@@ -16,7 +16,7 @@ export default function Browse() {
     sortBy: 'newest',
   });
 
-  const { notes, loading, error } = useNotes({
+  const { notes, loading, error, refetch } = useNotes({
     search: query.search,
     subject: query.subject,
     level: query.level,
@@ -49,7 +49,7 @@ export default function Browse() {
         onChange={(next) => setQuery((q) => ({ ...q, ...next }))}
       />
 
-      <NotesGrid notes={notes} loading={loading} error={error} />
+      <NotesGrid notes={notes} loading={loading} error={error} onRetry={refetch} />
     </div>
   );
 }

@@ -7,6 +7,8 @@ import { useAuth } from '../context/AuthContext.jsx';
 import LikeButton from '../components/LikeButton.jsx';
 import BookmarkButton from '../components/BookmarkButton.jsx';
 import UserAvatar from '../components/UserAvatar.jsx';
+import LoadingState from '../components/State/LoadingState.jsx';
+import ErrorState from '../components/State/ErrorState.jsx';
 
 /**
  * PUBLIC_INTERFACE
@@ -161,20 +163,14 @@ export default function NoteDetails() {
   }
 
   if (loading || authLoading) {
-    return (
-      <div className="card" role="status">
-        <strong>Loading note…</strong>
-        <p className="text-muted">Fetching details from the cloud.</p>
-      </div>
-    );
+    return <LoadingState title="Loading note…" description="Fetching details from the cloud." />;
   }
 
   if (err) {
     return (
-      <div className="card" role="alert" style={{ borderColor: 'var(--color-error)' }}>
-        <strong style={{ color: 'var(--color-error)' }}>Error</strong>
-        <p className="text-muted" style={{ marginTop: 6 }}>{err}</p>
-        <div style={{ marginTop: 8 }}>
+      <div style={{ display: 'grid', gap: '0.5rem' }}>
+        <ErrorState title="Unable to load note" message={err} />
+        <div>
           <Link className="btn ghost" to="/browse">Back to Browse</Link>
         </div>
       </div>

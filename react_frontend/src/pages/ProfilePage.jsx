@@ -4,6 +4,8 @@ import UserAvatar from '../components/UserAvatar.jsx';
 import NotesGrid from '../components/NotesGrid.jsx';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
+import LoadingState from '../components/State/LoadingState.jsx';
+import ErrorState from '../components/State/ErrorState.jsx';
 
 /**
  * PUBLIC_INTERFACE
@@ -36,10 +38,7 @@ export default function ProfilePage() {
 
   if (authLoading || loading) {
     return (
-      <div className="card" role="status">
-        <strong>Loading profile…</strong>
-        <p className="text-muted">Fetching your data from the cloud.</p>
-      </div>
+      <LoadingState title="Loading profile…" description="Fetching your data from the cloud." />
     );
   }
 
@@ -104,10 +103,7 @@ export default function ProfilePage() {
 
       {/* Content */}
       {error ? (
-        <div className="card" role="alert" style={{ borderColor: 'var(--color-error)' }}>
-          <strong style={{ color: 'var(--color-error)' }}>Error</strong>
-          <p className="text-muted" style={{ marginTop: 6 }}>{error}</p>
-        </div>
+        <ErrorState title="Failed to load profile" message={error} />
       ) : null}
 
       {activeTab === 'uploads' && (

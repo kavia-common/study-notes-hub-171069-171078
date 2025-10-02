@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext.jsx';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import useUploadNote from '../hooks/useUploadNote.js';
+import LoadingState from '../components/State/LoadingState.jsx';
 
 /**
  * PUBLIC_INTERFACE
@@ -76,9 +77,10 @@ export default function Upload() {
 
   if (loading) {
     return (
-      <div className="card" role="status">
-        <strong>Loading…</strong>
-        <p className="text-muted">Checking your authentication status.</p>
+      <div>
+        <div style={{ marginBottom: '1rem' }}>
+          <LoadingState title="Loading…" description="Checking your authentication status." />
+        </div>
       </div>
     );
   }

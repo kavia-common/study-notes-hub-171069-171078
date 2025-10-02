@@ -1,5 +1,8 @@
 import React from 'react';
 import NoteCard from './NoteCard.jsx';
+import LoadingState from './State/LoadingState.jsx';
+import ErrorState from './State/ErrorState.jsx';
+import EmptyState from './State/EmptyState.jsx';
 
 /**
  * PUBLIC_INTERFACE
@@ -19,31 +22,32 @@ export default function NotesGrid({
   onLike,
   onBookmark,
   onDownload,
+  onRetry, // optional refetch callback for ErrorState retry
 }) {
   if (loading) {
     return (
-      <div className="card" role="status">
-        <strong>Loading…</strong>
-        <p className="text-muted">Fetching notes from the cloud.</p>
-      </div>
+      <LoadingState title="Loading notes…" description="Fetching notes from the cloud." />
     );
   }
 
   if (error) {
     return (
-      <div className="card" role="alert" style={{ borderColor: 'var(--color-error)' }}>
-        <strong style={{ color: 'var(--color-error)' }}>Error:</strong>
-        <p className="text-muted">{error}</p>
-      </div>
+      <ErrorState
+        title="Could not load notes"
+        message={error}
+        onRetry={onRetry}
+        actionLabel={onRetry ? 'Retry' : undefined}
+      />
     );
   }
 
   if (!notes.length) {
     return (
-      <div className="card" role="status">
-        <strong>No notes found</strong>
-        <p className="text-muted">Try adjusting your search or filters.</p>
-      </div>
+      <EmptyState
+        title="No notes found"
+        message="Try adjusting your search or filters."
+        icon="📄"
+      />
     );
   }
 
@@ -54,6 +58,7 @@ export default function NotesGrid({
         gap: '1rem',
         gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
       }}
+      aria-label="Notes grid"
     >
       {notes.map((n) => (
         <NoteCard
