@@ -1,16 +1,10 @@
 import React from 'react';
+import Dashboard from './Dashboard.jsx';
 
 /**
  * PUBLIC_INTERFACE
- * Home page: landing/dashboard area.
+ * Home page: landing/dashboard with trending and recent sections.
  */
 export default function Home() {
-  return (
-    <div className="card">
-      <h1>Welcome to Study Notes Hub</h1>
-      <p className="text-muted">
-        Browse, upload, and bookmark study notes. Use the navigation above to get started.
-      </p>
-    </div>
-  );
+  return <Dashboard />;
 }
