@@ -8,6 +8,7 @@ import Browse from './pages/Browse.jsx';
 import Upload from './pages/Upload.jsx';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
+import NoteDetails from './pages/NoteDetails.jsx';
 
 // PUBLIC_INTERFACE
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/browse" element={<Browse />} />
+            <Route path="/notes/:id" element={<NoteDetails />} />
             <Route path="/upload" element={<Upload />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
