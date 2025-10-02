@@ -4,6 +4,9 @@ import { formatDistanceToNow } from 'date-fns';
 import getSupabaseClient from '../lib/supabaseClient';
 import PdfPreview from '../components/PdfPreview.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
+import LikeButton from '../components/LikeButton.jsx';
+import BookmarkButton from '../components/BookmarkButton.jsx';
+import UserAvatar from '../components/UserAvatar.jsx';
 
 /**
  * PUBLIC_INTERFACE
@@ -197,7 +200,8 @@ export default function NoteDetails() {
       {/* Header and actions */}
       <div className="card" style={{ display: 'grid', gap: '0.5rem' }}>
         <div style={{ display: 'flex', alignItems: 'start', gap: '0.75rem', flexWrap: 'wrap' }}>
-          <div style={{ flex: 1 }}>
+          {note?.user_id ? <UserAvatar userId={note.user_id} size={44} /> : null}
+          <div style={{ flex: 1, minWidth: 220 }}>
             <h1 style={{ marginBottom: 4 }}>{note.title || 'Untitled'}</h1>
             <div className="text-muted" style={{ fontSize: 14 }}>
               {note.subject || 'General'} • {note.level || 'All levels'}
@@ -205,16 +209,20 @@ export default function NoteDetails() {
             </div>
           </div>
 
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
             <button className="btn" onClick={handleDownload} disabled={downloadBusy} aria-busy={downloadBusy}>
               ⬇️ Download
             </button>
-            <button className="btn ghost" onClick={handleLike} disabled={likeBusy}>
-              👍 Like
-            </button>
-            <button className="btn ghost" onClick={handleBookmark} disabled={bookmarkBusy}>
-              🔖 Bookmark
-            </button>
+            <LikeButton
+              noteId={note.id}
+              initialCount={Number(note.likes || 0)}
+              onCountChange={(c) => setNote((n) => (n ? { ...n, likes: c } : n))}
+            />
+            <BookmarkButton
+              noteId={note.id}
+              initialCount={Number(note.bookmarks || 0)}
+              onCountChange={(c) => setNote((n) => (n ? { ...n, bookmarks: c } : n))}
+            />
           </div>
         </div>
 
