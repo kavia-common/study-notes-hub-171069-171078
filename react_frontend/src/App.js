@@ -10,6 +10,7 @@ import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import NoteDetails from './pages/NoteDetails.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
+import UiKitchenSink from './pages/UiKitchenSink.jsx';
 
 // PUBLIC_INTERFACE
 function App() {
@@ -30,6 +31,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/profile" element={<ProfilePage />} />
+            {/* Developer sample: UI primitives reference */}
+            <Route path="/__ui" element={<UiKitchenSink />} />
           </Routes>
         </MainLayout>
       </BrowserRouter>
