@@ -9,6 +9,7 @@ import Upload from './pages/Upload.jsx';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import NoteDetails from './pages/NoteDetails.jsx';
+import ProfilePage from './pages/ProfilePage.jsx';
 
 // PUBLIC_INTERFACE
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Route path="/upload" element={<Upload />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Routes>
         </MainLayout>
       </BrowserRouter>

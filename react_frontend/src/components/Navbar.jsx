@@ -98,6 +98,15 @@ export default function Navbar() {
             <>
               {user ? (
                 <>
+                  <NavLink
+                    to="/profile"
+                    style={({ isActive }) => ({
+                      color: isActive ? 'var(--color-primary)' : 'var(--color-text)',
+                      fontWeight: 600,
+                    })}
+                  >
+                    Profile
+                  </NavLink>
                   <span className="text-muted" style={{ fontSize: 14 }}>
                     {user.email}
                   </span>
