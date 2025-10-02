@@ -1,14 +1,20 @@
 import React from 'react';
+import AuthPage from './AuthPage.jsx';
+import AuthForm from '../components/AuthForm.jsx';
 
 /**
  * PUBLIC_INTERFACE
- * Signup page: will host sign-up form.
+ * Signup page: Sign-up screen using AuthPage layout and AuthForm.
+ * On successful signup, user is either redirected (if session active) or
+ * prompted to confirm email (success message shown).
  */
 export default function Signup() {
   return (
-    <div className="card">
-      <h1>Sign Up</h1>
-      <p className="text-muted">Create your account to upload and bookmark notes.</p>
-    </div>
+    <AuthPage
+      title="Create your account"
+      subtitle="Join Study Notes Hub to upload, browse, and bookmark notes."
+    >
+      <AuthForm mode="signup" />
+    </AuthPage>
   );
 }

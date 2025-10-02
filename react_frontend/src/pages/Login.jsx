@@ -1,14 +1,19 @@
 import React from 'react';
+import AuthPage from './AuthPage.jsx';
+import AuthForm from '../components/AuthForm.jsx';
 
 /**
  * PUBLIC_INTERFACE
- * Login page: will host sign-in form.
+ * Login page: Sign-in screen using AuthPage layout and AuthForm.
+ * On successful login, AuthForm will redirect the user to the dashboard (/).
  */
 export default function Login() {
   return (
-    <div className="card">
-      <h1>Log In</h1>
-      <p className="text-muted">Enter your credentials to access your account.</p>
-    </div>
+    <AuthPage
+      title="Welcome back"
+      subtitle="Sign in to upload, bookmark, and manage your study notes."
+    >
+      <AuthForm mode="signin" />
+    </AuthPage>
   );
 }
