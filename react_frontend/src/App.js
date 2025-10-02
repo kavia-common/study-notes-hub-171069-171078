@@ -1,47 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { ThemeProvider, useTheme } from './context/ThemeContext.jsx';
-
-function AppInner() {
-  const { theme, toggleTheme } = useTheme();
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <button
-          className="theme-toggle"
-          onClick={toggleTheme}
-          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-        >
-          {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
-        </button>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          Current theme: <strong>{theme}</strong>
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { ThemeProvider } from './context/ThemeContext.jsx';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import MainLayout from './layouts/MainLayout.jsx';
+import Home from './pages/Home.jsx';
+import Browse from './pages/Browse.jsx';
+import Upload from './pages/Upload.jsx';
+import Login from './pages/Login.jsx';
+import Signup from './pages/Signup.jsx';
 
 // PUBLIC_INTERFACE
 function App() {
-  /** App is wrapped with ThemeProvider to enable global theming */
+  /**
+   * App sets up ThemeProvider and application routes.
+   * The AuthProvider is applied in src/index.js to ensure authentication
+   * state is available across the entire app.
+   */
   return (
     <ThemeProvider initial="light">
-      <AppInner />
+      <BrowserRouter>
+        <MainLayout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/browse" element={<Browse />} />
+            <Route path="/upload" element={<Upload />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+          </Routes>
+        </MainLayout>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
