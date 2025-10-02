@@ -1,26 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { ThemeProvider, useTheme } from './context/ThemeContext.jsx';
 
-// PUBLIC_INTERFACE
-function App() {
-  const [theme, setTheme] = useState('light');
-
-  // Effect to apply theme to document element
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
-
-  // PUBLIC_INTERFACE
-  const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-  };
+function AppInner() {
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <div className="App">
       <header className="App-header">
-        <button 
-          className="theme-toggle" 
+        <button
+          className="theme-toggle"
           onClick={toggleTheme}
           aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
         >
@@ -43,6 +33,16 @@ function App() {
         </a>
       </header>
     </div>
+  );
+}
+
+// PUBLIC_INTERFACE
+function App() {
+  /** App is wrapped with ThemeProvider to enable global theming */
+  return (
+    <ThemeProvider initial="light">
+      <AppInner />
+    </ThemeProvider>
   );
 }
 

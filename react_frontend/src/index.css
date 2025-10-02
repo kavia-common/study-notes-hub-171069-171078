@@ -1,13 +1,135 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import "./styles/theme.css";
+
+/* CSS Reset-ish: modern, minimal */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Arial, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+  transition: background var(--transition), color var(--transition);
+}
+
+/* Container helper */
+.container {
+  max-width: var(--container-max);
+  padding-left: calc(var(--container-padding) * 1.25);
+  padding-right: calc(var(--container-padding) * 1.25);
+  margin: 0 auto;
+}
+
+/* Typography scale */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+h1 { font-size: clamp(1.75rem, 2.4vw, 2.25rem); }
+h2 { font-size: clamp(1.5rem, 2vw, 1.875rem); }
+h3 { font-size: clamp(1.25rem, 1.6vw, 1.5rem); }
+
+p {
+  margin: 0.25rem 0 1rem;
+  color: var(--color-text);
+}
+
+small, .muted {
+  color: var(--color-text-muted);
+}
+
+/* Links */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:hover { color: var(--color-primary-400); }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-md);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border: 1px solid transparent;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition), background var(--transition);
+  cursor: pointer;
+  font-weight: 600;
+}
+.btn:hover {
+  background: var(--btn-bg-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+.btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.btn.secondary {
+  background: var(--color-secondary);
+}
+.btn.ghost {
+  background: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-border);
+}
+.btn.ghost:hover {
+  background: rgba(37, 99, 235, 0.08);
+  border-color: var(--color-primary-400);
+}
+
+/* Cards / surfaces */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 1rem;
+  transition: box-shadow var(--transition), transform var(--transition);
+  background-image: var(--gradient-surface);
+  backdrop-filter: saturate(110%) blur(2px);
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Minimal utility helpers */
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.rounded { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.text-muted { color: var(--color-text-muted); }
+.surface { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+
+/* Code font */
+code, pre, kbd, samp {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }

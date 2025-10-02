@@ -1,0 +1,70 @@
+:root {
+  /* Ocean Professional Palette */
+  --color-primary: #2563EB;     /* Blue 600 */
+  --color-primary-600: #2563EB;
+  --color-primary-500: #3B82F6;
+  --color-primary-400: #60A5FA;
+
+  --color-secondary: #F59E0B;   /* Amber 500 (used also as success) */
+  --color-success: #F59E0B;     /* Aligning with style guide */
+
+  --color-error: #EF4444;       /* Red 500 */
+
+  --color-bg: #f9fafb;          /* Background - gray50 */
+  --color-surface: #ffffff;     /* Cards/surfaces */
+  --color-text: #111827;        /* Gray 900 */
+  --color-text-muted: #6B7280;  /* Gray 500 */
+  --color-border: #E5E7EB;      /* Gray 200 */
+  --color-shadow: 0, 0, 0;      /* For rgba shadows */
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(249, 250, 251, 1));
+  --gradient-surface: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,1));
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(var(--color-shadow), 0.06);
+  --shadow-sm: 0 1px 3px rgba(var(--color-shadow), 0.08), 0 1px 2px rgba(var(--color-shadow), 0.06);
+  --shadow-md: 0 4px 6px rgba(var(--color-shadow), 0.08), 0 2px 4px rgba(var(--color-shadow), 0.06);
+  --shadow-lg: 0 10px 15px rgba(var(--color-shadow), 0.10), 0 4px 6px rgba(var(--color-shadow), 0.05);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition: 220ms ease;
+  --transition-slow: 340ms ease;
+
+  /* Sizing tokens */
+  --container-max: 1200px;
+  --container-padding: 1rem;
+
+  /* Buttons */
+  --btn-bg: var(--color-primary);
+  --btn-bg-hover: #1D4ED8; /* Blue 700 */
+  --btn-text: #ffffff;
+
+  /* Focus ring */
+  --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.35);
+}
+
+/* Example dark theme hook (to be enabled via data-theme="dark" on <body>) */
+[data-theme="dark"] {
+  --color-bg: #0B1220;
+  --color-surface: #0F172A;     /* Slate 900 */
+  --color-text: #E5E7EB;        /* Gray 200 */
+  --color-text-muted: #9CA3AF;  /* Gray 400 */
+  --color-border: #1F2937;      /* Gray 800 */
+  --color-shadow: 0, 0, 0;
+
+  --gradient-primary: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(15, 23, 42, 1));
+  --gradient-surface: linear-gradient(180deg, rgba(15,23,42,0.9), rgba(15,23,42,1));
+
+  --btn-bg: var(--color-primary-500);
+  --btn-bg-hover: var(--color-primary-600);
+  --btn-text: #ffffff;
+}
